@@ -1,0 +1,23 @@
+Once ansible is installed then go to cd .ansible
+create a hosts file and add all servers you want to do changes or install softwares. pwd - /root/.ansible/hosts
+we can add groups and add servers in the groups
+[weservers]
+18.206.161.146
+54.166.16.51
+you can add an id address in any group or n num of groups
+
+[dbservers]
+18.206.161.146
+54.166.16.51
+ansible --help
+now you can check if you are able to connect to other servers using ansible command
+ansible webservers -u ubuntu --become-user=root --become-method=sudo -b -m ping
+webersers is group name, -u is which user you want to login as , there is something called become user, 
+if you have to install softwares then ubuntu cannot do that , you will have to be root user to do the changes on other mechines
+using sudo ubuntu user become root user, -b to become root user to execute commands , -m is module , we have to specify what we want to do so using ping to ping on servers.
+when you execute anbile webservers -m ping , we may get error if ansible couldnt read hosts file, so we have to configure in ansible.cfg
+we have to tell ansible that where is ansible located and we have to give the inventoryfile path.
+when you install ansible a config file will be created that is ansible.cfg
+/etc/ansible/ansible.cfg
+copy ansible.cfg to current folder that is .ansible , cp /etc/ansible/ansible.cfg . and if required hosts file as well to current folder that is .ansible cp /etc/ansible/hosts .
+and we have to remove # (uncomment) for host_key checking = False, this is because to avoid login errors while we try logging into other linux mechines 
