@@ -11,7 +11,9 @@ you can add an id address in any group or n num of groups
 54.166.16.51
 ansible --help
 now you can check if you are able to connect to other servers using ansible command
-ansible webservers -u ubuntu --become-user=root --become-method=sudo -b -m ping
+for ubuntu users command is ansible webservers -u ubuntu --become-user=root --become-method=sudo -b -m ping
+for root users ansible webservers -m ping
+to install apache ansible webservers -m apt -a "name=apache2"
 webersers is group name, -u is which user you want to login as , there is something called become user, 
 if you have to install softwares then ubuntu cannot do that , you will have to be root user to do the changes on other mechines
 using sudo ubuntu user become root user, -b to become root user to execute commands , -m is module , we have to specify what we want to do so using ping to ping on servers.
